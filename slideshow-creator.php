@@ -8,3 +8,6 @@ Author: 2BCoding
 Author URI: http://2bcoding.com
 License: GPL2
 */
+
+// include custom post type slides
+include(plugin_dir_path(__FILE__) . '/includes/custom-post-slides.php');

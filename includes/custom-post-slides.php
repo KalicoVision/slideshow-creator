@@ -3,11 +3,14 @@
  * custom-post-slides.php - Used to create the custom post type 'Slides'
  *
  * @package slideshow-creator
- * @version 0.1
+ * @version 1.0
  * @see register_post_type()
  */
 
-function sc_content_type_slides() {
+/**
+ * Contains all of the custom info of the custom content type - Slides
+ */
+function ssc_content_type_slides() {
 	$labels = array(
 		'name' => _x('Slides', 'post type general name', 'properwp'),
 		'singular_name' => _x('Slide', 'post type singular name', 'properwp'),
@@ -66,7 +69,18 @@ function sc_content_type_slides() {
 		 */
 		'menu_position' => 20,
 
-		'menu_icon' => get_stylesheet_directory_uri() . '/images/',
+		// full web path
+		'menu_icon' => plugins_url('images/slideshow-creator-icon.png', dirname(__FILE__)),
+
+		// Array of wordpress elements to include on admin page
+		// possible: title, editor, author, *thumbnail, excerpt, trackbacks, custom-fields,
+		// comments, revisions, page-attributes, post-formats, FALSE
+		// * - remember to add support for thumbnails for custom post type
+		'supports' => array('title', 'editor', 'thumbnail'),
 
 	);
+
+	register_post_type('slides', $args);
 }
+
+add_action('init', 'ssc_content_type_slides');
